@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario de Registro</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .navbar {
+      background-color: #1F730F;
+      padding: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      width: 200px;
+    }
+
+    .container {
+      color: #ffffff;
+      font-family: Helvetica, Verdana, sans-serif;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+    h2 {
+      text-transform: uppercase;
+      font: bold 20px/45px Helvetica, Verdana, sans-serif;
+      text-align: center;
+    }
+
+    label {
+      display: block;
+    }
+
+    .search-containers {
+      display: flex;
+      align-items: center;
+    }
+
+    .search-input {
+      margin-right: 10px;
+    }
+
+    .search-buttons {
+      background-color: #1F730F;
+      color: #fff;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+    }
+
+    table {
+      width: 80%;
+      margin-top: 20px;
+      border-collapse: collapse;
+      overflow: hidden;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      background: #fff;
+      border-radius: 10px;
+    }
+
+    th, td {
+      padding: 15px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    tr:hover {
+      background-color: rgba(255, 150, 0, 0.3);
+    }
+  </style>
+
+<script>
+  function buscarDatos() {
+    // Obtén el valor del input de búsqueda
+    const CODIGO_DE_PAGO = document.getElementById("CODIGO_DE_PAGO").value;
+
+    // Construye la URL de la API (reemplaza la URL de ejemplo con la URL real de tu API)
+    const apiUrl = `http://127.0.0.1:8000/consultarecau/` + CODIGO_DE_PAGO;
+
+    // Realiza la solicitud a la API usando fetch
+    fetch(apiUrl)
+      .then(response => response.json()) // Parsea la respuesta a JSON
+      .then(data => {
+        console.log('Datos de la API:', data); // Agrega este console.log
+        // Manipula los datos de la respuesta y actualiza la tabla
+        actualizarTabla(data);
+      })
+      .catch(error => {
+        console.error('Error al realizar la solicitud a la API:', error);
+      });
+  }
+
+  function actualizarTabla(data) {
+    // Obtén la referencia a la tabla
+    const tabla = document.querySelector("table tbody");
+
+    // Limpia el contenido actual de la tabla
+    tabla.innerHTML = '';
+
+    // Verifica si los datos son un array y si hay al menos un elemento
+    if (Array.isArray(data) && data.length > 0) {
+      // Itera sobre los datos y crea filas para la tabla
+      data.forEach(item => {
+        const fila = document.createElement("tr");
+        fila.innerHTML = `
+          <td>${item.cobro_numero_recibo}</td>
+          <td>${item.cobro_descripcion}</td>
+          <td>${item.cobro_importe}</td>
+          <td>${item.cobro_fecha_vencimiento}</td>
+          <td>${item.cobro_forma_pago}</td>
+        `;
+        tabla.appendChild(fila);
+      });
+    } else {
+      console.log('No se encontraron datos para el código de pago especificado.');
+    }
+  }
+</script>
+</head>
+
+<body>
+  <nav class="navbar">
+    <div>
+      <img src="https://media.discordapp.net/attachments/1197687583241670776/1197687686786453534/WhatsApp_Image_2023-11-20_at_8.11_2.png?ex=65bc2c94&is=65a9b794&hm=9130407c76d1690922695bf20c1a6a7e0a7ef3c1db242fbdb3798c37f50e8373&=&format=webp&quality=lossless"
+        alt="Logo" class="logo">
+    </div>
+    <div class="search-containers">
+      <input type="text" class="search-input" id="CODIGO_DE_PAGO" placeholder="CODIGO DE PAGO">
+      <button class="search-buttons" onclick="buscarDatos()">Buscar</button>
+    </div>
+  </nav>
+
+  <div class="container">
+    <table>
+        <thead>
+          <tr>
+            <th>Recibo</th>
+            <th>Descripción recibo</th>
+            <th>Pagado</th>
+            <th>Fecha de Pago</th>
+            <th>Forma Pago</th>
+          </tr>
+        </thead>
+        <tbody style="color: black;">
+          <!-- Aquí se agregarán dinámicamente las filas de la tabla -->
+        </tbody>
+      </table>
+  </div>
+</body>
+
+</html>
