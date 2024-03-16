@@ -10,7 +10,7 @@ python manage.py migrate
 
 
 nombre_de_usuario="clvsuper"
-
+correo_electronico="xdxd@ejemplo.com"
 contrasena="contrasegura"
 
 Verificar si el superusuario ya existe
@@ -18,7 +18,7 @@ if python manage.py shell -c "from django.contrib.auth.models import User; print
     echo "El superusuario ya existe. No se creará uno nuevo."
 else
     # Crear un superusuario
-    echo "from django.contrib.auth.models import User; User.objects.create_superuser('${nombre_de_usuario}', '${contrasena}')" | python manage.py shell
+    echo "from django.contrib.auth.models import User; User.objects.create_superuser('${nombre_de_usuario}', '${correo_electronico}', '${contrasena}')" | python manage.py shell
     echo "Superusuario creado con éxito."
 fi
 
