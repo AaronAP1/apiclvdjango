@@ -2,7 +2,7 @@ from rest_framework import routers
 from django.urls import path, include
 from projectclv import views
 from .api import DataClvviem, CobrosClvviem, RecaudacionClvviem
-from .views import mi_pagina, recaudaciones, tu_vista, busqueda, recaudacionesbusqueda, GeneratePDFView, NuevaVistaPrincipal
+from .views import mi_pagina, recaudaciones, tu_vista, busqueda, recaudacionesbusqueda, GeneratePDFView, NuevaVistaPrincipal, UserLoginAPIView
 from django.urls import path, include
 
 router = routers.DefaultRouter()
@@ -16,6 +16,7 @@ urlpatterns = [
     path('crear/',views.CreateUserView.as_view()),
     path('token/',views.CreateTokenView.as_view()),
     path('usuario/',views.RetroviewUpdateUserView.as_view()),
+    path('login/', UserLoginAPIView.as_view(), name='user-login'),
     path('', mi_pagina, name='mi_pagina'),
      path('nueva/', NuevaVistaPrincipal.as_view(), name='nueva_vista_principal'),
     path('listarb/', busqueda, name='listar'),

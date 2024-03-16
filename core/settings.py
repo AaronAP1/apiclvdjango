@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'drf_spectacular',
     'projectclv.apps.ProjectclvConfig',
-    'import_export'
+    'import_export',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -58,7 +59,12 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    
 ]
+
+CORS_ALLOWED_ORIGINS = ['http://localhost:8000', 'http://localhost:4200']
+
 
 ROOT_URLCONF = 'core.urls'
 
@@ -85,9 +91,10 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.config()
-}
+    'default': dj_database_url.config(
 
+    )
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators

@@ -1,27 +1,32 @@
 from django.contrib.auth import get_user_model, authenticate
 from .models import DataConsolidado, Cobros, Recaudaciones
+from rest_framework.authtoken.models import Token
 from rest_framework import serializers
 
 class UserSerializer(serializers.ModelSerializer):
+    token = serializers.SerializerMethodField()
 
     class Meta:
         model = get_user_model()
-        fields = ['email','password','name']
+        fields = ['email', 'password', 'name', 'codigo_pago', 'token']  
         extra_kwargs = {
-            'password': {'write_only': True}}
-        
+            'password': {'write_only': True}
+        }
+
+    def get_token(self, user):
+      
+        try:
+            token = Token.objects.get(user=user)
+            return token.key
+        except Token.DoesNotExist:
+            return None
 
     def create(self, validated_data):
-        return get_user_model( ).objects.create_user(**validated_data)
-    
-    def update(self, instance, validated_data):
-        password = validated_data.pop('password', None)
-        user = super().update(instance, validated_data)
-
-        if password:
-            user.set_password(password)
-            user.save()
-            
+        user = get_user_model().objects.create_user(**validated_data)
+        
+       
+        token, created = Token.objects.get_or_create(user=user)
+        
         return user
 
 
@@ -43,6 +48,10 @@ class AuthTokenSerializer(serializers.Serializer):
         
         data['user'] = user
         return data
+
+class UserLoginSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+    password = serializers.CharField(style={'input_type': 'password'})
 
 
 class ClvDataSerializer (serializers.ModelSerializer):

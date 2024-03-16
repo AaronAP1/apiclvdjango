@@ -7,7 +7,7 @@ from rest_framework.response import Response
 
 class DataClvviem(viewsets.ModelViewSet):
     queryset = DataConsolidado.objects.all()
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    permission_classes = [permissions.AllowAny]
     serializer_class = ClvDataSerializer
 
     def get_queryset(self):
@@ -30,10 +30,10 @@ class DataClvviem(viewsets.ModelViewSet):
 
 class CobrosClvviem(viewsets.ModelViewSet):
     queryset = Cobros.objects.all()
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    permission_classes = [permissions.AllowAny]
     serializer_class = ClvCobrosSerializer
 
 class RecaudacionClvviem(viewsets.ModelViewSet):
     queryset = Recaudaciones.objects.all()
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    permission_classes = [permissions.AllowAny]
     serializer_class = ClvRecaudacionesSerializer

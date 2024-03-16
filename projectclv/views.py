@@ -1,7 +1,11 @@
 from django.shortcuts import render
 from  rest_framework import generics, authentication, permissions
 from  rest_framework.authtoken.views  import ObtainAuthToken 
-from projectclv.serializers import UserSerializer, AuthTokenSerializer
+from projectclv.serializers import UserSerializer, AuthTokenSerializer, UserLoginSerializer
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from django.contrib.auth import authenticate
+from rest_framework import status
 from projectclv.models import User
 from django.http import JsonResponse, HttpResponse
 from django.db import connection
@@ -10,7 +14,19 @@ from django.template.loader import get_template
 from xhtml2pdf import pisa
 
 # Create your views here.
-
+class UserLoginAPIView(APIView):
+    def post(self, request):
+        serializer = UserLoginSerializer(data=request.data)
+        if serializer.is_valid():
+            email = serializer.validated_data['email']
+            password = serializer.validated_data['password']
+            user = authenticate(request=request, username=email, password=password)
+            if user:
+                return Response({'user': user.email, 'token': user.auth_token.key , 'codigo_pago' : user.codigo_pago})
+            else:
+                return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class CreateUserView(generics.CreateAPIView):
     serializer_class = UserSerializer
