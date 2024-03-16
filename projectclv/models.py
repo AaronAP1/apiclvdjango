@@ -44,7 +44,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     
 class DataConsolidado(models.Model):
     ID_DATOS = models.CharField(primary_key=True, db_column='IDDATOS',max_length=254)
-    ITEM = models.IntegerField(max_length=254)
+    ITEM = models.IntegerField()
     CODIGO_DE_PAGO = models.CharField(unique=True, null=True, db_column='CODIGO DE PAGO',max_length=254)
     MZLTS = models.CharField(null=True,max_length=254)
     CAPTACION = models.DateField(null=True,max_length=254)
@@ -65,11 +65,11 @@ class DataConsolidado(models.Model):
     PRECIOVENTA = models.CharField(null=True,max_length=254)
     INICIAL = models.CharField(null=True,max_length=254)
     SALDO = models.CharField(null=True,max_length=254)
-    CUOTAS = models.IntegerField(null=True,max_length=254)
+    CUOTAS = models.IntegerField(null=True)
     CUOTA = models.CharField(null=True,max_length=254)
     INICIOPAGO = models.DateField(null=True,max_length=254)
-    CVENCIDAS = models.IntegerField(null=True,max_length=254)
-    CPAGADAS = models.IntegerField(null=True,max_length=254)
+    CVENCIDAS = models.IntegerField(null=True)
+    CPAGADAS = models.IntegerField(null=True)
     SVENCIDOS = models.CharField(null=True,max_length=254)
     SPAGADOS = models.CharField(null=True,max_length=254)
     COMENTARIO = models.TextField(null=True,max_length=254)
