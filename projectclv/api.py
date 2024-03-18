@@ -33,7 +33,39 @@ class CobrosClvviem(viewsets.ModelViewSet):
     permission_classes = [permissions.AllowAny]
     serializer_class = ClvCobrosSerializer
 
+    def get_queryset(self):
+        codigo_integrante = self.kwargs.get('codigo_integrante')
+        queryset = Cobros.objects.filter(CODIGO_INTEGRANTE=codigo_integrante)
+        return queryset
+
+    def list(self, request, *args, **kwargs):
+        queryset = self.get_queryset()
+        serializer = self.serializer_class(queryset, many=True)
+        return Response(serializer.data)
+
+    def retrieve(self, request, *args, **kwargs):
+        queryset = self.get_queryset()
+        obj = get_object_or_404(queryset)
+        serializer = self.serializer_class(obj)
+        return Response(serializer.data)
+
 class RecaudacionClvviem(viewsets.ModelViewSet):
     queryset = Recaudaciones.objects.all()
     permission_classes = [permissions.AllowAny]
     serializer_class = ClvRecaudacionesSerializer
+
+    def get_queryset(self):
+        codigo_integrante = self.kwargs.get('codigo_integrante')
+        queryset = Recaudaciones.objects.filter(CODIGO_INTEGRANTE=codigo_integrante)
+        return queryset
+
+    def list(self, request, *args, **kwargs):
+        queryset = self.get_queryset()
+        serializer = self.serializer_class(queryset, many=True)
+        return Response(serializer.data)
+
+    def retrieve(self, request, *args, **kwargs):
+        queryset = self.get_queryset()
+        obj = get_object_or_404(queryset)
+        serializer = self.serializer_class(obj)
+        return Response(serializer.data)

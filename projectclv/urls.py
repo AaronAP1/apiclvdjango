@@ -8,8 +8,8 @@ from django.urls import path, include
 router = routers.DefaultRouter()
 
 router.register('api/clvdat/(?P<codigo_de_pago>\w+)', DataClvviem, 'DataConsolidada')
-router.register('api/clvco', CobrosClvviem, 'Cobros')
-router.register('api/clvrec', RecaudacionClvviem, 'Recaudaciones')
+router.register('api/clvco/(?P<codigo_integrante>\w+)', CobrosClvviem, 'Cobros')
+router.register('api/clvrec/(?P<codigo_integrante>\w+)', RecaudacionClvviem, 'Recaudaciones')
 
 
 urlpatterns = [
