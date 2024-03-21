@@ -71,9 +71,9 @@ def tu_vista(request, codigo_pago):
             c."INDICADOR_COBRO_MORA" AS c_indicador_mora,
             c."OBSERVACIONES_RECIBO" AS c_observaciones
         FROM
-            estadosdecuenta_dataconsolidado d
+            projectclv_dataconsolidado d
         LEFT JOIN
-            estadosdecuenta_cobros c ON d."CODIGO DE PAGO" = c."CODIGO_INTEGRANTE"
+            projectclv_cobros c ON d."CODIGO DE PAGO" = c."CODIGO_INTEGRANTE"
         WHERE
             d."CODIGO DE PAGO" = %s;
         """
@@ -109,9 +109,9 @@ SELECT
     c."FECHA_VENCIMIENTO" AS cobro_fecha_vencimiento,
     c."FORMA_PAGO" AS cobro_forma_pago
 FROM
-    estadosdecuenta_dataconsolidado d
+    projectclv_dataconsolidado d
 LEFT JOIN
-    estadosdecuenta_recaudaciones c ON d."CODIGO DE PAGO" = c."CODIGO_INTEGRANTE"
+    projectclv_recaudaciones c ON d."CODIGO DE PAGO" = c."CODIGO_INTEGRANTE"
 WHERE
     d."CODIGO DE PAGO" = %s;
         """

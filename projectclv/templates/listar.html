@@ -167,7 +167,7 @@
   <nav class="navbar">
     <div>
       <img
-        src="https://media.discordapp.net/attachments/1197687583241670776/1197687686786453534/WhatsApp_Image_2023-11-20_at_8.11_2.png?ex=65bc2c94&is=65a9b794&hm=9130407c76d1690922695bf20c1a6a7e0a7ef3c1db242fbdb3798c37f50e8373&=&format=webp&quality=lossless"
+        src="https://media.discordapp.net/attachments/1197687583241670776/1197687686786453534/WhatsApp_Image_2023-11-20_at_8.11_2.png?ex=66060094&is=65f38b94&hm=976070633972daa07dc1b87e0ffd7def4a08f85a2cf0fc81ec07490d5114b4f0&=&format=webp&quality=lossless&width=332&height=82"
         alt="Logo" class="logo">
     </div>
     <div class="search-containers">
@@ -298,7 +298,7 @@
       </table>
     </div>
   </div>
-  <a href="{% url 'descargar' %}">Descargar PDF</a>
+  <!--<a href="{% url 'descargar' %}">Descargar PDF</a>-->
 
   <br><br><br><br><br><br>
 
@@ -312,7 +312,7 @@
     async function buscarDatos() {
       var CODIGO_DE_PAGO = document.getElementById('CODIGO_DE_PAGO').value;
 
-      fetch('https://clv-pytestado.onrender.com/consumo/api/clvdat/' + CODIGO_DE_PAGO)
+      fetch('https://apiclvdjango.onrender.com/consumo/api/clvdat/' + CODIGO_DE_PAGO)
         .then(response => response.json())
         .then(dataArray => {
           console.log('Datos de la API DATOS PERSONA:', dataArray);
@@ -368,7 +368,7 @@
       const CODIGO_DE_PAGO = document.getElementById("CODIGO_DE_PAGO").value;
 
       // Construye la URL de la API (reemplaza la URL de ejemplo con la URL real de tu API)
-      const apiUrl = `https://clv-pytestado.onrender.com/consultarecau/` + CODIGO_DE_PAGO;
+      const apiUrl = `https://apiclvdjango.onrender.com/consultarecau/` + CODIGO_DE_PAGO;
 
       // Realiza la solicitud a la API usando fetch
       fetch(apiUrl)
@@ -430,7 +430,7 @@
       const CODIGO_DE_PAGO = document.getElementById("CODIGO_DE_PAGO").value;
 
       // Construye la URL de la API (reemplaza la URL de ejemplo con la URL real de tu API)
-      const apiUrl = `https://clv-pytestado.onrender.com/consultacobros/` + CODIGO_DE_PAGO;
+      const apiUrl = `https://apiclvdjango.onrender.com/consultacobros/` + CODIGO_DE_PAGO;
 
       // Realiza la solicitud a la API usando fetch
       fetch(apiUrl)
