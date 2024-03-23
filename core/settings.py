@@ -47,8 +47,7 @@ INSTALLED_APPS = [
     'drf_spectacular',
     'projectclv.apps.ProjectclvConfig',
     'import_export',
-    'corsheaders',
-    'projectclv'
+    'corsheaders'
     
 ]
 
