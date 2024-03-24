@@ -64,10 +64,10 @@ MIDDLEWARE = [
     
 ]
 
-CORS_ORIGIN_ALLOW_ALL = True
-CORS_ALLOWED_ORIGINS = ['http://localhost:8000', 'http://localhost:4200', 'https://aaronap.online', 'https://aaronap.online/datoscliente', 'https://aaronap.online/datoscontrato', 'https://aaronap.online/pagos','https://aaronap.online/pago-realizado']
-CORS_ORIGIN_WHITHELIST = ( 'https://clvpruebas.netlify.app' ,'https://aaronap.online', 'https://aaronap.online/datoscliente', 'https://aaronap.online/datoscontrato', 'https://aaronap.online/pagos','https://aaronap.online/pago-realizado' )
-ALLOWED_HOST = []
+CORS_ORIGIN_ALLOW_ALL = False
+CORS_ALLOWED_ORIGINS = ['http://localhost:8000', 'http://localhost:4200', 'https://aaronap.online']
+CORS_ORIGIN_WHITHELIST = ( 'https://clvpruebas.netlify.app' ,'https://aaronap.online' )
+ALLOWED_HOST = ['https://aaronap.online']
 
 ROOT_URLCONF = 'core.urls'
 
