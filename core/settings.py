@@ -64,7 +64,7 @@ MIDDLEWARE = [
     
 ]
 
-CORS_ORIGIN_ALLOW_ALL = False
+#CORS_ORIGIN_ALLOW_ALL = False
 CORS_ALLOWED_ORIGINS = ['http://localhost:8000', 'http://localhost:4200', 'https://aaronap.online']
 CORS_ORIGIN_WHITHELIST = ( 'https://clvpruebas.netlify.app' ,'https://aaronap.online' )
 ALLOWED_HOST = ['https://aaronap.online']
