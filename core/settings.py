@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 import os, dj_database_url
+from corsheaders.defaults import default_headers
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -65,9 +66,29 @@ MIDDLEWARE = [
 ]
 
 #CORS_ORIGIN_ALLOW_ALL = False
-CORS_ALLOWED_ORIGINS = ['http://localhost:8000', 'http://localhost:4200', 'https://aaronap.online']
-CORS_ORIGIN_WHITHELIST = ( 'https://clvpruebas.netlify.app' ,'https://aaronap.online' )
+
 ALLOWED_HOST = ['https://aaronap.online']
+
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:8000',  # Permitir solicitudes desde el servidor de desarrollo de Django
+    'http://localhost:4200',  # Permitir solicitudes desde otro servidor local si es necesario
+    'https://aaronap.online',  # Permitir solicitudes desde este dominio
+    'https://clvpruebas.netlify.app',  # Permitir solicitudes desde este dominio
+]
+
+CORS_ALLOW_HEADERS = list(default_headers) + [
+    'your-custom-header',  # Agrega cualquier header personalizado que necesites permitir
+]
+
+# Opcional: Configura métodos HTTP permitidos (GET, POST, etc.)
+CORS_ALLOW_METHODS = [
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+]
 
 ROOT_URLCONF = 'core.urls'
 
