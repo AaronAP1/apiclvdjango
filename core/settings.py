@@ -27,7 +27,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', default='defaultsecretkey')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'RENDER' not in os.environ
 
-ALLOWED_HOSTS = ['aaronap.online']
+ALLOWED_HOSTS = ['aaronap.online', 'www.aaronap.online', 'https://aaronap.online']
 CORS_ALLOW_ALL_ORIGINS = True
 
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
