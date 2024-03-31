@@ -27,7 +27,8 @@ SECRET_KEY = os.environ.get('SECRET_KEY', default='defaultsecretkey')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'RENDER' not in os.environ
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
+CORS_ALLOW_ALL_ORIGINS = True
 
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 if RENDER_EXTERNAL_HOSTNAME:
@@ -65,16 +66,15 @@ MIDDLEWARE = [
     
 ]
 
-CORS_ORIGIN_ALLOW_ALL = True
+#CORS_ORIGIN_ALLOW_ALL = True
 
-ALLOWED_HOST = ['https://aaronap.online']
+#ALLOWED_HOST = ['https://aaronap.online']
 
-CORS_ALLOWED_ORIGINS = [
-    'http://localhost:8000',  # Permitir solicitudes desde el servidor de desarrollo de Django
-    'http://localhost:4200',  # Permitir solicitudes desde otro servidor local si es necesario
-    'https://aaronap.online',  # Permitir solicitudes desde este dominio
-    'https://clvpruebas.netlify.app',  # Permitir solicitudes desde este dominio
-]
+#CORS_ALLOWED_ORIGINS = [
+ #   'http://localhost:8000',  # Permitir solicitudes desde el servidor de desarrollo de Django
+  ## 'https://aaronap.online',  # Permitir solicitudes desde este dominio
+   # 'https://clvpruebas.netlify.app',  # Permitir solicitudes desde este dominio
+#]
 
 CORS_ALLOW_HEADERS = list(default_headers) + [
     'your-custom-header',  # Agrega cualquier header personalizado que necesites permitir
