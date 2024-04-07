@@ -53,6 +53,8 @@ INSTALLED_APPS = [
     
 ]
 
+CSRF_TRUSTED_ORIGINS = ['https://aaronap.online']
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
