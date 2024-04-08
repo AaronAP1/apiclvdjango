@@ -78,7 +78,7 @@ MIDDLEWARE = [
    # 'https://clvpruebas.netlify.app',  # Permitir solicitudes desde este dominio
 #]
 
-CORS_ALLOW_HEADERS = list(default_headers) 
+CORS_ALLOW_ALL_ORIGINS = True
 
 # Opcional: Configura métodos HTTP permitidos (GET, POST, etc.)
 #CORS_ALLOW_METHODS = [
